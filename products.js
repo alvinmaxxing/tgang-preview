@@ -1,0 +1,3 @@
+// EDIT PRICES/PRODUCTS HERE. Prices are EXAMPLE placeholders in Naira.
+// [name, category, colour, priceNaira, photo (in assets/, or null)]
+window.P=[["Sculpt Set","Sets","lilac",28000],["Contour Bodysuit","Bodysuits","black",22000],["Studio Romper","Rompers","pink",24000],["Flow Leggings","Leggings","blue",15000],["Halo Crop Top","Tops","white",10000],["Pilates Set","Sets","blue",28000],["Night Jumpsuit","Rompers","black",30000],["Rib Bodysuit","Bodysuits","pink",22000],["High-Rise Leggings","Leggings","black",15000],["Twist Crop","Tops","lilac",11000],["Everyday Set","Sets","cream",26000],["Seamless Leggings","Leggings","lilac",16000]];
