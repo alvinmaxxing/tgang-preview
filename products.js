@@ -39,10 +39,11 @@ window.P=[
 ["Weekend Short Set","Sets","navy",26000,"tg-weekend-short-set-v1.jpg","tg-weekend-short-set-2-v1.jpg","A long-sleeve scoop-neck crop top with drawstring sweat shorts. Shown in navy (left) and red."],
 ["Weekend Short Set","Sets","red",26000,"tg-weekend-short-set-v1.jpg","tg-weekend-short-set-2-v1.jpg","A long-sleeve scoop-neck crop top with drawstring sweat shorts. Shown in red (right) and navy."],
 ["Midi Gym Bag","Accessories","pink",12000,"tg-midi-gym-bag-v1.jpg",null,"A smaller barrel gym bag with grab handles, a detachable shoulder strap and the Tgang logo. Shown in pink (left) and yellow."],
-["Midi Gym Bag","Accessories","yellow",12000,"tg-midi-gym-bag-v1.jpg",null,"A smaller barrel gym bag with grab handles, a detachable shoulder strap and the Tgang logo. Shown in yellow (right) and pink."]
+["Midi Gym Bag","Accessories","yellow",12000,"tg-midi-gym-bag-v1.jpg",null,"A smaller barrel gym bag with grab handles, a detachable shoulder strap and the Tgang logo. Shown in yellow (right) and pink."],
+["Cancun Set","Sets","royal blue",34000,"tg-cancun-set-blue-v1.jpg","tg-cancun-set-blue-2-v1.jpg","A fitted zip-front jacket with contour seams and matching flare leggings in deep royal blue."]
 ];
 // Pieces tagged "New" on cards and in the product popup.
-window.NEW=["Hot Pink Zip Romper","White Open-Back Romper","Sunny Side Set","Kim Set","Milly Play Suit","BB Set","5 in 1 Vency Set","Zip Jacket Set","Shine Set","Tgang Gym Bag","Tgang Crew Socks (3-pack)","Heart Line Set","Sage Zip Romper","Weekend Short Set","Midi Gym Bag"];
+window.NEW=["Hot Pink Zip Romper","White Open-Back Romper","Sunny Side Set","Kim Set","Milly Play Suit","BB Set","5 in 1 Vency Set","Zip Jacket Set","Shine Set","Tgang Gym Bag","Tgang Crew Socks (3-pack)","Heart Line Set","Sage Zip Romper","Weekend Short Set","Midi Gym Bag","Cancun Set"];
 window.isNew=p=>(window.NEW||[]).includes(p[0]);
 // Example only: pieces shown as sold out so the "Notify me" flow can be demoed.
 window.SOLD_OUT=["Contour Bodysuit"];
@@ -55,7 +56,7 @@ window.wasOf=p=>WAS[p[0]+'|'+p[2]];
 window.offOf=p=>{const w=wasOf(p);return w?Math.round((1-p[3]/w)*100):0};
 window.priceHTML=p=>{const w=wasOf(p),n=x=>TGM.fmt(x);return w?`<s class="was">${n(w)}</s> <span class="now">${n(p[3])}</span>`:n(p[3])};
 // COLLECTIONS (shop filters + "Shop by mood" tiles). One per piece; the type above (p[1]) stays for Build your set and shipping weights.
-window.COLL={"Active Wear":["Reformer Set","Periwinkle Zip Set","Dusty Pink Set","Sunny Side Set","Kim Set","5 in 1 Vency Set","Snatched Crop Top","Sculpt Crop Top","Sleek Crop Top","Turquoise Flare Leggings","Sculpt Leggings","Hot Pink Zip Jacket","Periwinkle Zip Jacket","Hot Pink Zip Romper","Shine Set","Tgang Gym Bag","Tgang Crew Socks (3-pack)","Heart Line Set","Sage Zip Romper","Midi Gym Bag"],"Lounge Outfits":["Weekend Short Set","Off-Duty Hoodie Set","Cropped Teddy Hoodie","Milly Play Suit","Ribbed Romper","Zip Jacket Set"]};
+window.COLL={"Active Wear":["Reformer Set","Periwinkle Zip Set","Dusty Pink Set","Sunny Side Set","Kim Set","5 in 1 Vency Set","Snatched Crop Top","Sculpt Crop Top","Sleek Crop Top","Turquoise Flare Leggings","Sculpt Leggings","Hot Pink Zip Jacket","Periwinkle Zip Jacket","Hot Pink Zip Romper","Shine Set","Tgang Gym Bag","Tgang Crew Socks (3-pack)","Heart Line Set","Sage Zip Romper","Midi Gym Bag","Cancun Set"],"Lounge Outfits":["Weekend Short Set","Off-Duty Hoodie Set","Cropped Teddy Hoodie","Milly Play Suit","Ribbed Romper","Zip Jacket Set"]};
 window.collOf=p=>Object.keys(COLL).find(k=>COLL[k].includes(p[0]));
 // PARCEL WEIGHTS (EXAMPLES, kg per piece incl. packaging) by category. Used for DHL / FedEx shipping quotes.
 window.WEIGHT_KG={Jumpsuits:0.6,Bodysuits:0.35,Sets:0.7,Rompers:0.45,Tops:0.25,Leggings:0.35,Layers:0.6,Accessories:0.4};
