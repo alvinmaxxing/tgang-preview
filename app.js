@@ -16,7 +16,7 @@ const shut=()=>{m.classList.remove('open');m.setAttribute('aria-hidden','true')}
 window.closeProduct=()=>shut();
 const io=new IntersectionObserver(es=>es.forEach(x=>x.isIntersecting&&(x.target.classList.add('in'),io.unobserve(x.target))),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 document.addEventListener('load',e=>{if(e.target.tagName=='IMG')e.target.classList.add('ld')},true);document.querySelectorAll('img').forEach(i=>i.complete&&i.classList.add('ld'));
-let hi=0;const hs=document.querySelectorAll('.hs');setInterval(()=>{hs[hi].classList.remove('on');hi=(hi+1)%hs.length;hs[hi].classList.add('on')},4500);
+let hi=0;const hs=document.querySelectorAll('.hs');setInterval(()=>{if(window.tgHeroVideo)return;hs[hi].classList.remove('on');hi=(hi+1)%hs.length;hs[hi].classList.add('on')},4500);
 
 let bag=JSON.parse(localStorage.tgbag||'[]');const B=document.getElementById('bag');
 function rb(){localStorage.tgbag=JSON.stringify(bag);bagn.textContent=bag.length;
@@ -30,3 +30,9 @@ nf.onsubmit=async e=>{e.preventDefault();const ok=window.ACCT&&await ACCT.newsle
 document.getElementById('salelink').onclick=()=>{const b=[...f.querySelectorAll('button')].find(x=>x.textContent=='Sale');b&&b.click()};
 
 document.getElementById('mart').addEventListener('click',e=>{const b=e.target.closest('.mthumbs button');if(!b)return;e.stopPropagation();const im=document.querySelector('#mart > img');if(im)im.src=TI(b.dataset.src,1);b.parentNode.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x==b))});
+/* v7 videos: poster/photo first, video only when allowed, starts after load, pauses offscreen */
+(function(){const c=navigator.connection||{},rm=matchMedia('(prefers-reduced-motion: reduce)').matches,save=c.saveData||/(^|-)2g$/.test(c.effectiveType||'');
+const pick=v=>(innerWidth*(devicePixelRatio||1)>900&&innerWidth>860)?v.dataset.src720:v.dataset.src480;
+function arm(v,onPlay){if(save||rm)return;let loaded=false;const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){if(!loaded){v.src=pick(v);v.preload='auto';loaded=true}const p=v.play();p&&p.then(()=>onPlay&&onPlay()).catch(()=>{})}else if(loaded)v.pause()}),{threshold:.25});io.observe(v)}
+const go=()=>setTimeout(()=>{const h=document.querySelector('.hv');if(h){h.addEventListener('playing',()=>{h.classList.add('on');window.tgHeroVideo=1});arm(h)}const l=document.querySelector('.lv');if(l)arm(l)},300);
+document.readyState==='complete'?go():addEventListener('load',go)})();
