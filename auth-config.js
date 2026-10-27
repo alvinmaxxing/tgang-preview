@@ -2,4 +2,4 @@
 window.SHOP_AUTH={url:'https://duhkwkygdxphdojmucrx.supabase.co',key:'sb_publishable_4brgYgLaXXAnBvQAi_D4xg_8DLD8Lrw',name:'T.GANG',currency:'NGN',
  google:false, // set true once the Google provider is switched on in Supabase (see README)
  mount:'.navr',mountFirst:true,home:'./',
- theme:{bg:'#fff7fb',ink:'#111',accent:'linear-gradient(180deg,#ff5cb4,#e0218a)',onAccent:'#fff',serif:"'Fraunces',serif",sans:"'Inter',sans-serif",radius:'24px'}};
+ theme:{bg:'#fbf9f5',ink:'#151311',accent:'#151311',onAccent:'#fbf9f5',serif:"'Cormorant Garamond',serif",sans:"'Manrope',sans-serif",radius:'0px'}};

@@ -30,7 +30,7 @@ $('nform').onsubmit=async e=>{e.preventDefault();const d=Object.fromEntries(new 
  $('nmsg').textContent=`Thank you, ${d.name.split(' ')[0]}! We’ll message you when the ${P[curI][0]} is back.`};
 
 // ---------- Shop the look ----------
-const LOOKS=[{img:'tg-04.jpg',name:'Turquoise Dream',pos:'50% 30%',items:[[8,48,36],[11,40,72]]},
+const LOOKS=[{img:'tg-04.jpg',name:'Turquoise Studio',pos:'50% 30%',items:[[8,48,36],[11,40,72]]},
  {img:'tg-09.jpg',name:'Pilates Princess',pos:'50% 35%',items:[[9,58,55],[13,36,78]]},
  {img:'tg-12.jpg',name:'Off-Duty Glam',pos:'50% 25%',items:[[17,40,52],[14,58,86]]},
  {img:'tg-06.jpg',name:'Jet Set',pos:'50% 30%',items:[[0,52,55]]}];
@@ -65,19 +65,19 @@ tick();setInterval(tick,1000);
 $('wl').onsubmit=async e=>{e.preventDefault();const f=e.target,d=Object.fromEntries(new FormData(f)),b=f.querySelector('button');b.disabled=true;
  const ok=window.ACCT?await ACCT.waitlist({name:d.name,contact:d.wa,drop_name:(window.TG_DROP||{}).name}):false;b.disabled=false;
  if(!ok){$('wlmsg').textContent='Sorry, that didn’t go through. Please try again.';return}f.reset();
- $('wlmsg').textContent=`You’re on the list, ${d.name.split(' ')[0]} ✦ We’ll WhatsApp you first.`};
+ $('wlmsg').textContent=`You’re on the list, ${d.name.split(' ')[0]} We’ll WhatsApp you first.`};
 
 // ---------- Style quiz ----------
 const Q=[['Where are you wearing it?',[['Gym or pilates','gym'],['Travel day','jet'],['Brunch & errands','brunch'],['Lounging, but cute','cosy']]],
- ['Pick your colour mood',[['Barbie pink','gym'],['All black everything','jet'],['Soft pastels','brunch'],['Cream & neutrals','cosy']]],
+ ['Pick your colour mood',[['Rose & blush','gym'],['All black everything','jet'],['Soft pastels','brunch'],['Cream & neutrals','cosy']]],
  ['How do you like the fit?',[['Snatched & sculpting','gym'],['Sleek one-piece','jet'],['Matching two-piece','brunch'],['Relaxed & oversized','cosy']]],
  ['Your signature move?',[['Hitting a PR','gym'],['Boarding first class','jet'],['Mirror selfie','brunch'],['Sunday reset','cosy']]]];
-const M={gym:{n:'Pilates Princess',d:'Pink, snatched and always on the reformer.',p:[2,9,13]},jet:{n:'Jet-Set Babe',d:'Sleek black, airport-ready, effortlessly expensive.',p:[0,1,12]},
+const M={gym:{n:'Pilates Princess',d:'Sculpted, soft and always on the reformer.',p:[2,9,13]},jet:{n:'Jet-Set Babe',d:'Sleek black, airport-ready, effortlessly expensive.',p:[0,1,12]},
  brunch:{n:'Brunch Baddie',d:'Matching sets that go gym to mimosas.',p:[5,3,15]},cosy:{n:'Cosy Glam Girl',d:'Soft layers, still serving.',p:[7,17,14]}};
 let qi=0,sc={};const qz=$('qz');
 function qdraw(){if(qi<Q.length){const [q,a]=Q[qi];qz.innerHTML=`<p class="eyebrow">Style quiz · ${qi+1} of ${Q.length}</p><div class="qbar"><i style="width:${qi/Q.length*100}%"></i></div><h2>${q}</h2><div class="qa">${a.map(([t,k])=>`<button type="button" data-k="${k}">${t}</button>`).join('')}</div>`;return}
- const k=Object.keys(sc).sort((a,b)=>sc[b]-sc[a])[0],m=M[k],share=`I'm a ${m.n} ✦ ${m.d} Take the T.GANG style quiz: ${location.href.split('#')[0]}#quiz`;
- qz.innerHTML=`<p class="eyebrow"><span class="spark" aria-hidden="true">✦</span> Your TG Babe match</p><h2>You're a <em>${m.n}</em></h2><p class="lede">${m.d}</p><div class="qrec">${m.p.map(i=>`<div class="qr"><img src="assets/${P[i][4]}" alt="" loading="lazy"><b>${P[i][0]}</b><small>${cap(P[i][2])} · ${N(P[i][3])}</small><button class="btn sm" data-add="${i}">Add · size M</button></div>`).join('')}</div><div class="qend"><button class="btn" id="qshare">Share my match</button><button class="link" id="qagain" type="button">Retake quiz</button></div><p class="note" id="qmsg" aria-live="polite"></p>`;
+ const k=Object.keys(sc).sort((a,b)=>sc[b]-sc[a])[0],m=M[k],share=`I'm a ${m.n} ${m.d} Take the T.GANG style quiz: ${location.href.split('#')[0]}#quiz`;
+ qz.innerHTML=`<p class="eyebrow">Your TG Babe match</p><h2>You're a <em>${m.n}</em></h2><p class="lede">${m.d}</p><div class="qrec">${m.p.map(i=>`<div class="qr"><img src="assets/${P[i][4]}" alt="" loading="lazy"><b>${P[i][0]}</b><small>${cap(P[i][2])} · ${N(P[i][3])}</small><button class="btn sm" data-add="${i}">Add · size M</button></div>`).join('')}</div><div class="qend"><button class="btn" id="qshare">Share my match</button><button class="link" id="qagain" type="button">Retake quiz</button></div><p class="note" id="qmsg" aria-live="polite"></p>`;
  $('qshare').onclick=async()=>{try{if(navigator.share){await navigator.share({title:'My TG Babe match',text:share});return}await navigator.clipboard.writeText(share);$('qmsg').textContent='Copied: '+share}catch(e){$('qmsg').textContent=share}};
  $('qagain').onclick=()=>{qi=0;sc={};qdraw()}}
 qz.onclick=e=>{const b=e.target.closest('[data-k]');if(b){sc[b.dataset.k]=(sc[b.dataset.k]||0)+1;qi++;qdraw();return}const a=e.target.closest('[data-add]');if(a){addItems([+a.dataset.add],'M');a.textContent='Added ✓';toast(P[a.dataset.add][0]+' added to your bag')}};

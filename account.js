@@ -57,8 +57,8 @@ function wire(){
  const f=body.querySelector('form');if(!f)return;
  f.onsubmit=async e=>{e.preventDefault();const d=Object.fromEntries(new FormData(f)),b=f.querySelector('.sa-main'),lbl=b.textContent;busy(b,true,'Please wait…');msg('','');
   try{
-   if(f.dataset.f=='login'){const {error}=await sb.auth.signInWithPassword({email:d.email.trim(),password:d.password});if(error)throw new Error(/invalid/i.test(error.message)?'Wrong email or password.':error.message);close();toast('Welcome back ✦')}
-   if(f.dataset.f=='signup'){const j=await call('signup',d);if(j.error)throw new Error(j.error);const {error}=await sb.auth.signInWithPassword({email:d.email.trim().toLowerCase(),password:d.password});if(error)throw error;close();toast('Account created ✦ Welcome, '+d.name.split(' ')[0])}
+   if(f.dataset.f=='login'){const {error}=await sb.auth.signInWithPassword({email:d.email.trim(),password:d.password});if(error)throw new Error(/invalid/i.test(error.message)?'Wrong email or password.':error.message);close();toast('Welcome back')}
+   if(f.dataset.f=='signup'){const j=await call('signup',d);if(j.error)throw new Error(j.error);const {error}=await sb.auth.signInWithPassword({email:d.email.trim().toLowerCase(),password:d.password});if(error)throw error;close();toast('Account created Welcome, '+d.name.split(' ')[0])}
    if(f.dataset.f=='forgot'){const j=await call('recover',d);if(j.error)throw new Error(j.error);
     if(j.reason=='email-not-configured')msg('Password-reset emails are switching on soon. For now, message us on WhatsApp and we\'ll help you get back in.','err');else msg('If an account exists for '+d.email+', a reset link is on its way. Check your inbox and spam.','ok')}
   }catch(err){msg(err.message||String(err))}busy(b,false,lbl)}
@@ -67,7 +67,7 @@ async function google(){if(!C.google){msg('Google sign-in is being switched on. 
  const {error}=await sb.auth.signInWithOAuth({provider:'google',options:{redirectTo:location.origin+location.pathname}});if(error)msg(error.message)}
 async function faceLogin(){msg('','');try{const o=await call('passkey-login-options');if(o.error)throw new Error(o.error);
  const resp=await SimpleWebAuthnBrowser.startAuthentication({optionsJSON:o.options});const v=await call('passkey-login-verify',{challengeId:o.challengeId,response:resp});if(v.error)throw new Error(v.error);
- const {error}=await sb.auth.verifyOtp({token_hash:v.token_hash,type:'magiclink'});if(error)throw error;close();toast('Signed in with Face ID ✦')}
+ const {error}=await sb.auth.verifyOtp({token_hash:v.token_hash,type:'magiclink'});if(error)throw error;close();toast('Signed in with Face ID')}
  catch(e){msg(e.name=='NotAllowedError'?'Face ID was cancelled.':(e.message||String(e)))}}
 async function enableFace(btn){const m=body.querySelector('.sa-msg');try{btn.disabled=true;const o=await call('passkey-register-options',{},true);if(o.error)throw new Error(o.error);
  const resp=await SimpleWebAuthnBrowser.startRegistration({optionsJSON:o.options});const v=await call('passkey-register-verify',{challengeId:o.challengeId,response:resp,deviceName:navigator.platform||''},true);if(v.error)throw new Error(v.error);
