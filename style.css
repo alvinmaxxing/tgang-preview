@@ -352,3 +352,24 @@ body.mopen{overflow:hidden}
 .policy a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--gold-d,#a8864a)}.policy .pswitch{margin-top:46px;font-size:13px;opacity:.85}
 .pol-agree{font-size:12px;line-height:1.5;opacity:.75;margin-top:10px;text-align:center}.pol-agree a{text-decoration:underline}
 @media(max-width:600px){.policy h2{font-size:23px}.policy p,.policy li{font-size:14.5px}}
+
+/* v17 editorial hero */
+.hero{grid-template-columns:minmax(0,1fr) minmax(0,.92fr);gap:clamp(40px,6vw,110px);align-items:center;min-height:calc(100svh - 120px);padding:clamp(32px,4vw,64px) 6vw;max-width:1440px;margin:0 auto}
+.hero-txt{max-width:560px;justify-self:end}
+.hero h1{font-size:clamp(48px,5.6vw,92px);line-height:.98;letter-spacing:-.015em;font-weight:300;margin:0 0 26px}
+.hero h1 em{color:var(--gold-d);font-style:italic}
+.hero .eyebrow{margin-bottom:26px}
+.hero .lede{max-width:34ch;font-size:16px;line-height:1.7;opacity:.78;margin:0 0 34px}
+.hero .ctas{display:flex;flex-wrap:wrap;align-items:center;gap:14px 28px}
+.hero .ctas .link{font-size:13px;letter-spacing:.04em;border-bottom:1px solid var(--gold);padding-bottom:3px}
+.hero-art{position:relative;aspect-ratio:auto;height:auto;max-width:500px;width:100%;justify-self:start;padding:14px;background:var(--ivory);box-shadow:none}
+.hero-art:before{inset:-10px -10px 10px 10px;border:1px solid var(--gold);opacity:.5;z-index:-1}
+.hero-art .tile-big{position:relative;inset:auto;aspect-ratio:3/4;border-radius:0;padding:0}
+.tile-big:after{display:none}
+.hs{transition:opacity 1.6s ease!important;transform:none!important}
+.hcap{display:flex;align-items:center;gap:16px;padding:14px 2px 2px;font-size:11px;letter-spacing:.18em;color:var(--ink)}
+.hcap em{font:italic 300 20px var(--serif);letter-spacing:.01em;margin-right:auto}
+.hdots{display:flex;gap:6px}.hdots i{width:14px;height:1px;background:var(--ink);opacity:.25;transition:opacity .6s,width .6s}.hdots i.on{opacity:.9;width:26px}
+.hnum{opacity:.6;font-variant-numeric:tabular-nums}.hnum b{font-weight:500}
+@media(max-width:860px){.hero{grid-template-columns:1fr;min-height:auto;gap:44px;padding:32px 6vw 48px}.hero-txt,.hero-art{justify-self:stretch;max-width:520px;margin:0 auto}.hero-art{padding:10px}.hero-art:before{inset:-7px -7px 7px 7px}.hero h1{font-size:clamp(44px,11vw,64px)}}
+@media(prefers-reduced-motion:reduce){.hs,.hdots i{transition:none!important}}

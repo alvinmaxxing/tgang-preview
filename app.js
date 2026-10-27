@@ -16,7 +16,7 @@ const shut=()=>{m.classList.remove('open');m.setAttribute('aria-hidden','true')}
 window.closeProduct=()=>shut();
 const io=new IntersectionObserver(es=>es.forEach(x=>x.isIntersecting&&(x.target.classList.add('in'),io.unobserve(x.target))),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 document.addEventListener('load',e=>{if(e.target.tagName=='IMG')e.target.classList.add('ld')},true);document.querySelectorAll('img').forEach(i=>i.complete&&i.classList.add('ld'));
-let hi=0;const hs=document.querySelectorAll('.hs');setInterval(()=>{hs[hi].classList.remove('on');hi=(hi+1)%hs.length;hs[hi].classList.add('on')},4500);
+let hi=0;const hs=document.querySelectorAll('.hs'),hd=document.querySelectorAll('.hdots i'),hn=document.querySelector('.hnum b');if(hs.length)setInterval(()=>{hs[hi].classList.remove('on');hd[hi]&&hd[hi].classList.remove('on');hi=(hi+1)%hs.length;hs[hi].classList.add('on');hd[hi]&&hd[hi].classList.add('on');if(hn)hn.textContent=String(hi+1).padStart(2,'0')},5000);
 
 let bag=JSON.parse(localStorage.tgbag||'[]');const B=document.getElementById('bag');
 function rb(){localStorage.tgbag=JSON.stringify(bag);bagn.textContent=bag.length;
