@@ -26,4 +26,4 @@ bagwa.href='https://wa.me/2349159999813?text='+encodeURIComponent("Hi T.GANG! I'
 rb();bagitems.onclick=e=>{if(e.target.dataset.r){bag.splice(e.target.dataset.r,1);rb()}};
 madd.onclick=()=>{if(!size){msizes.classList.add('need');setTimeout(()=>msizes.classList.remove('need'),600);return}bag.push([...cur,size]);rb();shut();B.classList.add('open')};
 bagbtn.onclick=()=>B.classList.add('open');bagx.onclick=()=>B.classList.remove('open');
-nf.onsubmit=e=>{e.preventDefault();nfmsg.textContent="Thank you, you're on the list. (Preview: sign-ups are not stored yet.)";nf.reset()};
+nf.onsubmit=async e=>{e.preventDefault();const ok=window.ACCT&&await ACCT.newsletter(nf.querySelector('input').value);nfmsg.textContent=ok?"Thank you, you're on the list ✦":"Sorry, that didn't go through. Please try again.";if(ok)nf.reset()};

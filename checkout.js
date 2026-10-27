@@ -11,8 +11,9 @@ const ref=()=>'TG-'+Date.now().toString(36).toUpperCase().slice(-6)+Math.random(
 const ML={card:'Card',bank_transfer:'Bank transfer',opay:'OPay',ussd:'USSD / Mobile money'};
 $('ckf').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target),d=Object.fromEntries(f);
 order={...d,ref:ref(),method,total:total(),items:bag.map(b=>({name:b[0],colour:b[2],size:b[5],price:b[3]}))};
-if(method=='wa'){window.open(waLink('Hi T.GANG! I\'d like to order:'),'_blank');return}
+if(method=='wa'){saveOrder('whatsapp','whatsapp-request');window.open(waLink('Hi T.GANG! I\'d like to order:'),'_blank');return}
 render();open('pay')};
+const saveOrder=(ch,status)=>window.ACCT&&ACCT.placeOrder({ref:order.ref,channel:ch,name:order.name,email:order.email,phone:order.phone,address:order.address,city:order.city,country:order.country,method:order.method,gateway:ch=='whatsapp'?null:gw,total:order.total,status:status||(live?'paid-unverified':'demo'),items:order.items.map(i=>({key:i.name.replace(' (set)','')+'|'+i.colour,name:i.name,colour:i.colour,size:i.size,price:i.price}))});
 const GN={paystack:'Paystack',flutterwave:'Flutterwave'};
 function render(){live=isLive(gw);$('gw').querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.g==gw));
 $('ckdemo').hidden=live;const manual=method=='opay'&&gw=='paystack';
@@ -27,7 +28,7 @@ $('gw').onclick=e=>{const b=e.target.closest('button');if(b){gw=b.dataset.g;rend
 $('pback').onclick=()=>open('form');
 $('pgo').onclick=()=>{if(live&&!(method=='opay'&&gw=='paystack'))return gw=='paystack'?payLive():payFlw();open('proc');setTimeout(done,2200)};
 function waLink(h){return `https://wa.me/${C.WHATSAPP}?text=`+encodeURIComponent(h+'\n'+order.items.map(i=>`• ${i.name} (${i.colour}), size ${i.size}: ${N(i.price)}`).join('\n')+`\nTotal: ${N(order.total)} + delivery\nName: ${order.name}\nPhone: ${order.phone}\nDeliver to: ${order.address}, ${order.city}, ${order.country}`)}
-function done(status){$('sref').textContent=order.ref;$('sname').textContent=order.name.split(' ')[0];
+function done(status){saveOrder('checkout',status);$('sref').textContent=order.ref;$('sname').textContent=order.name.split(' ')[0];
 $('smeth').textContent=(order.method=='opay'&&gw=='paystack'?'OPay transfer (awaiting confirmation)':ML[order.method])+' · '+GN[gw]+(live?'':' · demo');
 $('swa').href=waLink(`Hi T.GANG! Order ${order.ref} — paid via ${ML[order.method]} (${GN[gw]})${live?'':' (demo)'}${status?' ['+status+']':''}.`);
 bag=[];rb();open('ok')}

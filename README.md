@@ -38,3 +38,33 @@ All config lives in `config.js` (`TG_DROP` drop name/date, `TG_BUNDLE` set disco
 - **Wishlist**: hearts on products, saved in `localStorage` (`tgwish`), wishlist drawer.
 - **Notify me / restock alerts** and **drop waitlist**: DEMO ONLY. Sign-ups are saved in the visitor's own browser (`localStorage` keys `tgnotify`, `tgwaitlist`) and never reach T.GANG. Going live needs a backend (e.g. a serverless function + database/Google Sheet, or a WhatsApp/email API) to store sign-ups and send the alerts.
 - **Reviews wall**: SAMPLE reviews and a customer-photo slot; replace with real reviews.
+
+## Accounts, database and emails (Supabase)
+Project: https://duhkwkygdxphdojmucrx.supabase.co (org "alvin technologies", free tier). Source of the database schema and the `shop-auth` Edge Function is in `supabase/` (private repo only).
+
+| Feature | Status |
+|---|---|
+| Sign up / log in / log out (email + password), account panel in header | Live |
+| Wishlist saved to the database when logged in (guests keep it on the device, merged at login) | Live |
+| Checkout + WhatsApp orders saved to `orders` / `order_items` (guest or logged-in), shown in the account panel | Live |
+| Drop waitlist, restock alerts, newsletter stored in the database | Live |
+| Face ID / fingerprint (passkeys): "Enable Face ID" in the account panel, "Sign in with Face ID" on log in | Live on alvinmaxxing.github.io. Moving to a new domain: change `RP_ID`/`ORIGIN` in the function and re-enable on each device |
+| Password reset (email link -> `reset.html`) | Built. Emails need RESEND_API_KEY |
+| Welcome / order / waitlist emails | Built. Need RESEND_API_KEY + verified sender domain |
+| Google sign-in | Button built. Needs a Google OAuth client, then set `google:true` in `auth-config.js` |
+
+Only the publishable key is in `auth-config.js`. Secret keys live only in Supabase.
+
+### Turning on emails (Resend)
+1. Create a Resend account, add and verify the shop domain (DNS records Resend shows).
+2. Supabase dashboard -> Edge Functions -> Secrets: add `RESEND_API_KEY` and `EMAIL_FROM` (e.g. `T.GANG <hello@yourdomain.com>`).
+3. Optional: Authentication -> SMTP settings: use Resend SMTP (smtp.resend.com, port 465, user `resend`, password = API key) so Supabase's own auth emails also send.
+
+### Turning on Google sign-in
+1. Google Cloud Console -> APIs & Services -> OAuth consent screen: External, app name T.GANG, support email.
+2. Credentials -> Create credentials -> OAuth client ID -> Web application.
+   - Authorised JavaScript origins: `https://alvinmaxxing.github.io`
+   - Authorised redirect URI: `https://duhkwkygdxphdojmucrx.supabase.co/auth/v1/callback`
+3. Supabase -> Authentication -> Sign In / Providers -> Google: enable, paste Client ID and Client Secret.
+4. Supabase -> Authentication -> URL Configuration: Site URL `https://alvinmaxxing.github.io/tgang-preview/`, Redirect URLs `https://alvinmaxxing.github.io/tgang-preview/**`.
+5. Set `google:true` in `auth-config.js` and push.

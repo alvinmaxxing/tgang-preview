@@ -11,20 +11,23 @@ const sold=p=>(window.SOLD_OUT||[]).includes(p[0]);
 // ---------- Wishlist ----------
 let wish=ls('tgwish',[]);
 window.paintHearts=()=>document.querySelectorAll('.heart').forEach(h=>{const on=wish.includes(key(P[h.dataset.w]));h.classList.toggle('on',on);h.setAttribute('aria-pressed',on)});
-function rw(){localStorage.tgwish=JSON.stringify(wish);$('wishn').textContent=wish.length;paintHearts();
+function rw(){if(!(window.ACCT&&ACCT.user()))localStorage.tgwish=JSON.stringify(wish);$('wishn').textContent=wish.length;paintHearts();
  const items=wish.map(k=>P.findIndex(p=>key(p)==k)).filter(i=>i>=0);
  $('wishitems').innerHTML=items.length?items.map(i=>{const p=P[i];return `<div class="bi"><img class="ld" src="assets/${p[4]}" alt=""><div><b>${p[0]}</b><p>${cap(p[2])} · ${N(p[3])}</p></div><div class="wact"><button data-o="${i}">${sold(p)?'Notify me':'View'}</button><button data-d="${i}">Remove</button></div></div>`}).join(''):'<p class="empty">Tap ♥ on any piece to save it here.</p>'}
-window.toggleWish=i=>{const k=key(P[i]),on=wish.includes(k);wish=on?wish.filter(x=>x!=k):[...wish,k];rw();toast(on?'Removed from wishlist':'Saved to your wishlist ♥')};
+window.toggleWish=i=>{const k=key(P[i]),on=wish.includes(k);wish=on?wish.filter(x=>x!=k):[...wish,k];rw();window.ACCT&&ACCT.wishSet(k,!on);toast(on?'Removed from wishlist':'Saved to your wishlist ♥')};
 $('wishitems').onclick=e=>{const d=e.target.dataset;if(d.d)toggleWish(+d.d);if(d.o){$('wish').classList.remove('open');openProduct(+d.o);if(sold(P[d.o]))$('mnotify').click()}};
 $('wishbtn').onclick=()=>$('wish').classList.add('open');$('wishx').onclick=()=>$('wish').classList.remove('open');rw();
+window.SHOP_WISH_COUNT=()=>wish.length;window.SHOP_TOAST=toast;if(window.SHOP_AUTH)SHOP_AUTH.onWishOpen=()=>$('wish').classList.add('open');
+if(window.ACCT){let had=false;ACCT.onChange(async u=>{if(u){had=true;const local=ls('tgwish',[]);await ACCT.wishMerge(local);const db=await ACCT.wishLoad();if(db){wish=[...new Set([...db,...local])];rw()}}else if(had){wish=ls('tgwish',[]);rw()}})}
 
 // ---------- Restock alerts (demo) ----------
 let curI;window.onProductOpen=i=>{curI=i;const s=sold(P[i]);$('madd').disabled=s;$('madd').textContent=s?'Sold out (example)':'Add to bag';
  $('nform').hidden=true;$('nmsg').textContent='';$('mnotify').hidden=false;$('mnotify').textContent=s?'Notify me when it’s back in stock':'Notify me about restocks'};
 $('mnotify').onclick=()=>{$('nform').hidden=false;$('mnotify').hidden=true;$('nform').querySelector('input').focus()};
-$('nform').onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.target)),l=ls('tgnotify',[]);
- l.push({...d,product:key(P[curI]),at:new Date().toISOString()});localStorage.tgnotify=JSON.stringify(l);e.target.reset();e.target.hidden=true;
- $('nmsg').textContent=`Thank you, ${d.name.split(' ')[0]}! We’ll WhatsApp you when the ${P[curI][0]} is back. (Demo: saved on this device only.)`};
+$('nform').onsubmit=async e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.target)),f=e.target,b=f.querySelector('button');b.disabled=true;
+ const ok=window.ACCT?await ACCT.restock({name:d.name,contact:d.wa,product_key:key(P[curI])}):false;b.disabled=false;
+ if(!ok){$('nmsg').textContent='Sorry, that didn’t go through. Please try again.';return}f.reset();f.hidden=true;
+ $('nmsg').textContent=`Thank you, ${d.name.split(' ')[0]}! We’ll message you when the ${P[curI][0]} is back.`};
 
 // ---------- Shop the look ----------
 const LOOKS=[{img:'tg-04.jpg',name:'Turquoise Dream',pos:'50% 30%',items:[[8,48,36],[11,40,72]]},
@@ -59,8 +62,10 @@ const T=new Date((window.TG_DROP||{}).date||Date.now()).getTime();$('dname').tex
 const pad=n=>String(n).padStart(2,'0');function tick(){let s=Math.max(0,Math.floor((T-Date.now())/1000));
  $('cdd').textContent=pad(Math.floor(s/86400));$('cdh').textContent=pad(Math.floor(s%86400/3600));$('cdm').textContent=pad(Math.floor(s%3600/60));$('cds').textContent=pad(s%60)}
 tick();setInterval(tick,1000);
-$('wl').onsubmit=e=>{e.preventDefault();const d=Object.fromEntries(new FormData(e.target)),l=ls('tgwaitlist',[]);l.push({...d,at:new Date().toISOString()});localStorage.tgwaitlist=JSON.stringify(l);e.target.reset();
- $('wlmsg').textContent=`You’re on the list, ${d.name.split(' ')[0]} ✦ We’ll WhatsApp you first. (Demo: saved on this device only.)`};
+$('wl').onsubmit=async e=>{e.preventDefault();const f=e.target,d=Object.fromEntries(new FormData(f)),b=f.querySelector('button');b.disabled=true;
+ const ok=window.ACCT?await ACCT.waitlist({name:d.name,contact:d.wa,drop_name:(window.TG_DROP||{}).name}):false;b.disabled=false;
+ if(!ok){$('wlmsg').textContent='Sorry, that didn’t go through. Please try again.';return}f.reset();
+ $('wlmsg').textContent=`You’re on the list, ${d.name.split(' ')[0]} ✦ We’ll WhatsApp you first.`};
 
 // ---------- Style quiz ----------
 const Q=[['Where are you wearing it?',[['Gym or pilates','gym'],['Travel day','jet'],['Brunch & errands','brunch'],['Lounging, but cute','cosy']]],
