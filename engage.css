@@ -32,3 +32,4 @@
 .card .qa.so{background:transparent;color:#15131166;border-color:#15131133;cursor:default}
 .rv0{flex-wrap:wrap;text-align:left}.rv0 span:not(.stars){white-space:nowrap}
 @media(max-width:600px){.rv0{font-size:10.5px;gap:5px}}
+.card .qs[hidden],.card .qa[hidden],.rvf[hidden],.rvopen[hidden]{display:none!important}.card .qa{text-align:center}
