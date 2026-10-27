@@ -10,9 +10,9 @@ window.P=[
 ["Hot Pink Top","Tops","pink",12000,"tg-07.jpg"],
 ["Off-Duty Hoodie Set","Sets","cream",32000,"tg-12.jpg"],
 // Separates (used by Shop the look, Build your set and the quiz). Example prices.
-["Snatched Crop Top","Tops","white",11000,"tg-04.jpg"],
+["Snatched Crop Top","Tops","white",11000,"tg-white-tennis-dress-v1.jpg"],
 ["Sculpt Crop Top","Tops","pink",11000,"tg-09.jpg"],
-["Sleek Crop Top","Tops","black",11000,"tg-08.jpg"],
+["Sleek Crop Top","Tops","black",11000,"tg-black-crop-set-v1.jpg"],
 ["Turquoise Flare Leggings","Leggings","blue",17000,"tg-04.jpg"],
 ["Sculpt Leggings","Leggings","black",15000,"tg-06.jpg"],
 ["Sculpt Leggings","Leggings","pink",15000,"tg-05.jpg"],
