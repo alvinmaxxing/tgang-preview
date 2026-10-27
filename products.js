@@ -37,8 +37,7 @@ window.P=[
 ["Heart Line Set","Sets","black",30000,"tg-heart-line-set-black-v1.jpg","tg-heart-line-set-black-back-v1.jpg","A black sports bra and high-waist leggings with crisp white contour piping that traces a heart shape at the back."],
 ["Sage Zip Romper","Rompers","sage",24000,"tg-sage-zip-romper-v1.jpg","tg-sage-zip-romper-back-v1.jpg","A short-sleeve, half-zip sculpting romper in soft sage with a mock collar and bike-short length."],
 ["Weekend Short Set","Sets","navy & red",26000,"tg-weekend-short-set-v1.jpg","tg-weekend-short-set-2-v1.jpg","A long-sleeve scoop-neck crop top with drawstring sweat shorts. Shown in navy (left) and red (right)."],
-["Midi Gym Bag","Accessories","pink",12000,"tg-midi-gym-bag-v1.jpg",null,"A smaller barrel gym bag with grab handles, a detachable shoulder strap and the Tgang logo. Shown in pink (left) and yellow."],
-["Midi Gym Bag","Accessories","yellow",12000,"tg-midi-gym-bag-v1.jpg",null,"A smaller barrel gym bag with grab handles, a detachable shoulder strap and the Tgang logo. Shown in yellow (right) and pink."],
+["Midi Gym Bag","Accessories","pink & yellow",12000,"tg-midi-gym-bag-v1.jpg",null,"A smaller barrel gym bag with grab handles, a detachable shoulder strap and the Tgang logo. Shown in pink (left) and yellow (right)."],
 ["Cancun Set","Sets","royal blue",34000,"tg-cancun-set-blue-v1.jpg","tg-cancun-set-blue-2-v1.jpg","A fitted zip-front jacket with contour seams and matching flare leggings in deep royal blue."],
 ["TG Babe Set","Sets","blush",30000,"tg-tg-babe-set-blush-v1.jpg","tg-tg-babe-set-blush-2-v1.jpg","A long-sleeve scoop-neck crop top with high-waist sculpting leggings, made for Pilates and studio days. In soft blush."],
 ["TG Babe Set","Sets","pink",30000,"tg-tg-babe-set-pink-v1.jpg","tg-tg-babe-set-pink-2-v1.jpg","A long-sleeve scoop-neck crop top with high-waist sculpting leggings, made for Pilates and studio days. In pink."]
