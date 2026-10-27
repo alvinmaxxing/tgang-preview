@@ -22,3 +22,6 @@ window.TG_CONFIG={
 window.TG_DROP={name:'The Atelier Edit',date:'2026-11-28T19:00:00+01:00'};
 // Example bundle discount for "Build your set" (0.10 = 10% off when you take 2+ pieces).
 window.TG_BUNDLE=0.10;
+
+// Optimised image path: s/ = <=600px WebP (cards, thumbs), l/ = <=1200px WebP (popup).
+window.TI=(ph,big)=>'assets/'+(big?'l/':'s/')+String(ph).replace(/\.jpe?g$/i,'.webp');
