@@ -4,7 +4,7 @@
 <link rel="icon" href="assets/logo.jpg"><link rel="stylesheet" href="style.css"></head><body>
 <header class="nav"><a href="#top" class="logo"><img class="mono" src="assets/logo.jpg" alt="T.GANG logo">T.GANG</a>
 <nav><a href="#shop">Shop</a><a href="#lookbook">Lookbook</a><a href="#order">How to order</a><a href="#sizes">Sizes</a></nav>
-<a class="btn sm" href="https://wa.link/9fwhkh" target="_blank" rel="noopener">WhatsApp</a></header>
+<button class="btn sm" id="bagbtn">Bag (<span id="bagn">0</span>)</button></header>
 <main id="top">
 <section class="hero"><div class="hero-txt reveal"><p class="eyebrow">Lagos · Chic & Gym Wear</p>
 <h1>Train in<br><em>something</em><br>beautiful.</h1>
@@ -28,13 +28,22 @@
 <section id="sizes" class="wrap"><h2 class="reveal">Size guide</h2><div class="tbl"><table><tr><th>Size</th><th>Bust (cm)</th><th>Waist (cm)</th><th>Hips (cm)</th></tr>
 <tr><td>XS</td><td>78–82</td><td>60–64</td><td>86–90</td></tr><tr><td>S</td><td>82–86</td><td>64–68</td><td>90–94</td></tr><tr><td>M</td><td>86–92</td><td>68–74</td><td>94–100</td></tr><tr><td>L</td><td>92–98</td><td>74–80</td><td>100–106</td></tr><tr><td>XL</td><td>98–104</td><td>80–86</td><td>106–112</td></tr></table></div>
 <p class="note">Example measurements: replace with T.GANG's own chart</p></section>
+<!-- SAMPLE reviews: placeholders, replace with real customer reviews -->
 <section class="wrap reviews"><h2 class="reveal">What TG Babes say</h2><div class="rv">
-<blockquote class="reveal">“The set fits like it was made for me. I wore it to the gym and straight to brunch.”<cite>Sample review</cite></blockquote>
-<blockquote class="reveal">“Ordering on WhatsApp took two minutes. Delivery was quick.”<cite>Sample review</cite></blockquote>
-<blockquote class="reveal">“The lilac is even prettier in person.”<cite>Sample review</cite></blockquote></div></section>
+<blockquote class="reveal">“The set fits like it was made for me. I wore it to the gym and straight to brunch.”<cite>— TG Babe</cite></blockquote>
+<blockquote class="reveal">“Ordering on WhatsApp took two minutes. Delivery was quick.”<cite>— TG Babe</cite></blockquote>
+<blockquote class="reveal">“The lilac is even prettier in person.”<cite>— TG Babe</cite></blockquote></div></section>
 <section class="wrap"><div class="head"><h2 class="reveal">@t.gangwears</h2><a class="link" href="https://www.instagram.com/t.gangwears/" target="_blank" rel="noopener">Follow on Instagram →</a></div><div class="ig"><a href="https://www.instagram.com/t.gangwears/" target="_blank" rel="noopener"><img src="assets/tg-09.jpg" alt="" loading="lazy"></a><a href="https://www.instagram.com/t.gangwears/" target="_blank" rel="noopener"><img src="assets/tg-06.jpg" alt="" loading="lazy"></a><a href="https://www.instagram.com/t.gangwears/" target="_blank" rel="noopener"><img src="assets/tg-02.jpg" alt="" loading="lazy"></a><a href="https://www.instagram.com/t.gangwears/" target="_blank" rel="noopener"><img src="assets/tg-12.jpg" alt="" loading="lazy"></a><a href="https://www.instagram.com/t.gangwears/" target="_blank" rel="noopener"><img src="assets/tg-05.jpg" alt="" loading="lazy"></a><a href="https://www.instagram.com/t.gangwears/" target="_blank" rel="noopener"><img src="assets/tg-10.jpg" alt="" loading="lazy"></a><a href="https://www.instagram.com/t.gangwears/" target="_blank" rel="noopener"><img src="assets/tg-08.jpg" alt="" loading="lazy"></a><a href="https://www.instagram.com/t.gangwears/" target="_blank" rel="noopener"><img src="assets/tg-04.jpg" alt="" loading="lazy"></a><a href="https://www.instagram.com/t.gangwears/" target="_blank" rel="noopener"><img src="assets/tg-07.jpg" alt="" loading="lazy"></a><a href="https://www.instagram.com/t.gangwears/" target="_blank" rel="noopener"><img src="assets/tg-11.jpg" alt="" loading="lazy"></a></div></section>
+<section class="wrap faq"><h2 class="reveal">Questions</h2>
+<details><summary>How do I pay?</summary><p>Send your bag to us on WhatsApp. We confirm stock, total and delivery, then share payment details.</p></details>
+<details><summary>Where do you deliver?</summary><p>Across Nigeria, to Ghana, and worldwide. Ask us on WhatsApp for a delivery quote.</p></details>
+<details><summary>Can I visit the store?</summary><p>Orders are delivery only for now. Follow @t.gangwears for pop-up dates.</p></details>
+<details><summary>How do I find my size?</summary><p>Use the size guide above, or send us your measurements on WhatsApp and we'll help.</p></details>
+</section>
+<section class="wrap news"><div class="newsbox reveal"><h2>Join the <em>TG Babe</em> list.</h2><p>New drops and restocks, first.</p><form id="nf"><input type="email" required placeholder="Your email"><button class="btn">Join</button></form><p class="note" id="nfmsg"></p></div></section>
 <section class="cta-band"><h2>Follow the gang.</h2><a class="btn light" href="https://www.instagram.com/t.gangwears/" target="_blank" rel="noopener">@t.gangwears on Instagram</a></section>
 </main>
-<footer><div class="logo"><img class="mono" src="assets/logo.jpg" alt="T.GANG logo">T.GANG</div><p>Chic & Gym Wear · Lagos, Nigeria<br>WhatsApp <a href="https://wa.me/2349159999813">+234 915 999 9813</a></p><p class="note">Design preview</p></footer>
-<div class="modal" id="modal" aria-hidden="true"><div class="sheet"><button class="x" id="close" aria-label="Close">×</button><div class="m-art" id="mart"></div><div class="m-body"><p class="eyebrow" id="mcat"></p><h3 id="mname"></h3><p class="price" id="mprice"></p><p class="note">Example price: to be confirmed</p><p class="lbl">Size</p><div class="sizes" id="msizes"></div><a class="btn wide" id="mbuy" target="_blank" rel="noopener">Order on WhatsApp</a></div></div></div>
+<footer><div class="logo"><img class="mono" src="assets/logo.jpg" alt="T.GANG logo">T.GANG</div><p>Chic & Gym Wear · Lagos, Nigeria<br>WhatsApp <a href="https://wa.me/2349159999813">+234 915 999 9813</a></p><p class="note">Design preview · reviews, prices and sizes shown are samples</p></footer>
+<div class="modal" id="modal" aria-hidden="true"><div class="sheet"><button class="x" id="close" aria-label="Close">×</button><div class="m-art" id="mart"></div><div class="m-body"><p class="eyebrow" id="mcat"></p><h3 id="mname"></h3><p class="price" id="mprice"></p><p class="note">Example price: to be confirmed</p><p class="lbl">Size</p><div class="sizes" id="msizes"></div><button class="btn wide" id="madd">Add to bag</button><a class="link wa1" id="mbuy" target="_blank" rel="noopener">Or order this piece now on WhatsApp →</a></div></div></div>
+<aside class="bag" id="bag"><div class="bhead"><h3>Your bag</h3><button class="x" id="bagx">×</button></div><div id="bagitems"></div><p class="btot" id="btot"></p><a class="btn wide" id="bagwa" target="_blank" rel="noopener">Send order on WhatsApp</a><p class="note">We confirm stock, delivery and payment in the chat.</p></aside>
 <script src="products.js"></script><script src="app.js"></script></body></html>

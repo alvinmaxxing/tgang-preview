@@ -15,3 +15,13 @@ const shut=()=>{m.classList.remove('open');m.setAttribute('aria-hidden','true')}
 const io=new IntersectionObserver(es=>es.forEach(x=>x.isIntersecting&&(x.target.classList.add('in'),io.unobserve(x.target))),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 document.addEventListener('load',e=>{if(e.target.tagName=='IMG')e.target.classList.add('ld')},true);document.querySelectorAll('img').forEach(i=>i.complete&&i.classList.add('ld'));
 let hi=0;const hs=document.querySelectorAll('.hs');setInterval(()=>{hs[hi].classList.remove('on');hi=(hi+1)%hs.length;hs[hi].classList.add('on')},4500);
+
+let bag=JSON.parse(localStorage.tgbag||'[]');const B=document.getElementById('bag');
+function rb(){localStorage.tgbag=JSON.stringify(bag);bagn.textContent=bag.length;
+bagitems.innerHTML=bag.length?bag.map((b,i)=>`<div class="bi"><img class="ld" src="assets/${b[4]}" alt=""><div><b>${b[0]}</b><p>${b[2]} · Size ${b[5]} · ${naira(b[3])}</p></div><button data-r="${i}">Remove</button></div>`).join(''):'<p class="empty">Your bag is empty.</p>';
+const t=bag.reduce((a,b)=>a+b[3],0);btot.textContent=bag.length?'Total '+naira(t):'';
+bagwa.href='https://wa.me/2349159999813?text='+encodeURIComponent("Hi T.GANG! I'd like to order:\n"+bag.map(b=>`• ${b[0]} (${b[2]}), size ${b[5]}: ${naira(b[3])}`).join('\n')+`\nTotal: ${naira(t)}`);bagwa.style.display=bag.length?'':'none'}
+rb();bagitems.onclick=e=>{if(e.target.dataset.r){bag.splice(e.target.dataset.r,1);rb()}};
+madd.onclick=()=>{if(!size){msizes.classList.add('need');setTimeout(()=>msizes.classList.remove('need'),600);return}bag.push([...cur,size]);rb();shut();B.classList.add('open')};
+bagbtn.onclick=()=>B.classList.add('open');bagx.onclick=()=>B.classList.remove('open');
+nf.onsubmit=e=>{e.preventDefault();nfmsg.textContent="Thank you, you're on the list. (Preview: sign-ups are not stored yet.)";nf.reset()};
