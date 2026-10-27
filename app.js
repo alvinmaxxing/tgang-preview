@@ -14,3 +14,4 @@ function upd(){mbuy.href='https://wa.me/2349159999813?text='+encodeURIComponent(
 const shut=()=>{m.classList.remove('open');m.setAttribute('aria-hidden','true')};close.onclick=shut;m.onclick=e=>{if(e.target==m)shut()};addEventListener('keydown',e=>e.key=="Escape"&&shut());
 const io=new IntersectionObserver(es=>es.forEach(x=>x.isIntersecting&&(x.target.classList.add('in'),io.unobserve(x.target))),{threshold:.12});document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
 document.addEventListener('load',e=>{if(e.target.tagName=='IMG')e.target.classList.add('ld')},true);document.querySelectorAll('img').forEach(i=>i.complete&&i.classList.add('ld'));
+let hi=0;const hs=document.querySelectorAll('.hs');setInterval(()=>{hs[hi].classList.remove('on');hi=(hi+1)%hs.length;hs[hi].classList.add('on')},4500);
