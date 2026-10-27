@@ -39,8 +39,13 @@ if(items&&typeof rb=='function'){items.insertAdjacentHTML('afterend','<div id="b
 const gp=$('gcpage');if(gp){let amt=TG_GIFT[1];const d=$('gcden');
  d.innerHTML=TG_GIFT.map(v=>`<button type="button" data-v="${v}" class="${v==amt?'on':''}">${N(v)}</button>`).join('');
  d.onclick=e=>{const b=e.target.closest('button');if(!b)return;amt=+b.dataset.v;d.querySelectorAll('button').forEach(x=>x.classList.toggle('on',x==b));$('gcprev').textContent=N(amt)};$('gcprev').textContent=N(amt);
- $('gcf').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target),to=String(f.get('to')).trim().slice(0,60),msg=String(f.get('msg')||'').trim().slice(0,200);
-  const b=JSON.parse(localStorage.tgbag||'[]');b.push(['T.GANG Gift Card','Gift card','For '+to+(msg?' · “'+msg+'”':''),amt,'giftcard.svg','Gift card']);localStorage.tgbag=JSON.stringify(b);location.href='index.html#bag'}}
+ $('gcf').onsubmit=e=>{e.preventDefault();const f=new FormData(e.target),g=k=>String(f.get(k)||'').trim(),to=g('to').slice(0,60),msg=g('msg').slice(0,200),te=g('toemail'),fr=g('from').slice(0,60),fe=g('fromemail'),RE=GiftSend.EMAIL_RE,er=$('gcerr');
+  if(!to)return er.textContent='Enter the recipient’s name.';if(!RE.test(te))return er.textContent='Enter a valid recipient email.';if(!fr)return er.textContent='Enter your name.';if(!RE.test(fe))return er.textContent='Enter a valid email for you.';er.textContent='';
+  localStorage.tggift=JSON.stringify({amount:amt,to,msg,toEmail:te,from:fr,fromEmail:fe});
+  const b=JSON.parse(localStorage.tgbag||'[]');b.push(['T.GANG Gift Card','Gift card','For '+to+' · email to '+te+' · from '+fr+' ('+fe+')'+(msg?' · “'+msg+'”':''),amt,'giftcard.svg','Gift card']);localStorage.tgbag=JSON.stringify(b);location.href='index.html#bag'};
+ GiftSend.init({mount:'gift-send',shop:'T.GANG',slug:'tgang',url:'https://alvinmaxxing.github.io/tgang-preview/',bagWord:'bag',amtLabel:'Amount (₦, as purchased)',codePh:'TG-XXXX-XXXX-XXXX',codeRe:/^TG-[A-Z0-9]{4}-[A-Z0-9]{4}-[A-Z0-9]{4}$/,fmt:N,
+  serverEnabled:false,fnUrl:SHOP_AUTH.url+'/functions/v1/send-gift-card',anonKey:SHOP_AUTH.key,prefill:()=>{try{return JSON.parse(localStorage.tggift||'{}')}catch(e){return {}}},
+  theme:{bg:'#fbf9f5',ink:'#151311',accent:'#151311',line:'#a8875a',muted:'#6d655c',serif:'"Cormorant Garamond", Georgia, serif',sans:'Manrope, Arial, sans-serif'}})}
 // Rewards page CTA
 const rp=$('rwcta');if(rp&&window.ACCT){ACCT.onChange(async u=>{await load();rp.textContent=acct?'View my points':'Join TG Rewards'});rp.onclick=async e=>{e.preventDefault();if(!ACCT.user())return ACCT.open('signup');if(!acct){await ACCT.sb.rpc('join_rewards');await load();ACCT.toast('Welcome to TG Rewards');rp.textContent='View my points'}ACCT.open('account')}}
 })();
