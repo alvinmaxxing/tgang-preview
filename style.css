@@ -379,3 +379,7 @@ body.mopen{overflow:hidden}
 .hscrim{background:linear-gradient(0deg,#120f0df2 0%,#120f0dc0 38%,#120f0d30 65%,#120f0d00 100%)}
 .hbgx h1{font-size:clamp(40px,11vw,60px)}.hbgx .lede{font-size:14.5px;margin-bottom:30px}.hbgx .hcap{bottom:24px}}
 @media(prefers-reduced-motion:reduce){.hsl,.hdots i{transition:none}}
+.hero.hbgx{align-items:flex-start}.hbgx .hero-txt{margin:0!important;max-width:min(560px,40vw)}
+@media(min-width:861px){.hfg{-webkit-mask-image:linear-gradient(90deg,transparent,#000 28%);mask-image:linear-gradient(90deg,transparent,#000 28%)}}
+@media(max-width:860px){.hbgx .hero-txt{max-width:none}.hfg{height:66%!important;-webkit-mask-image:linear-gradient(180deg,#000 70%,transparent);mask-image:linear-gradient(180deg,#000 70%,transparent)}.hero.hbgx{padding-top:58vh}.hscrim{background:linear-gradient(0deg,#120f0df5 0%,#120f0dd0 45%,#120f0d00 66%)}}
+@media(max-width:860px) and (min-width:600px){.hero.hbgx{padding-top:62vh}}
