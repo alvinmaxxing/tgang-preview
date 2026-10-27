@@ -11,6 +11,12 @@ Bag → **Checkout** (name, phone, email, address, city, country) → choose **C
 - **OPay**: Paystack's payment-channels docs do not list OPay, so OPay is a manual transfer to T.GANG's OPay number (example details in `config.js`). Flutterwave supports OPay if a direct integration is wanted.
 - **Mobile money** on Paystack is for Ghana (GHS) accounts; USSD is for Nigeria.
 
+## Flutterwave (second gateway, and the one for OPay)
+
+The payment step lets the customer pick **Flutterwave** or **Paystack**. Flutterwave Inline (`https://checkout.flutterwave.com/v3.js`, `FlutterwaveCheckout`) uses `FLUTTERWAVE_PUBLIC_KEY` and `FLW_OPTIONS` in `config.js` (`card, banktransfer, ussd, mobilemoneyghana, opay`). Flutterwave's docs list `opay` as an NGN payment option, so OPay through Flutterwave is a real in-app OPay payment; with Paystack, OPay falls back to a manual transfer.
+
+Going live: T.GANG opens a Flutterwave business account with their settlement bank, puts the **public key** (`FLWPUBK-…`) in `config.js`, keeps the **secret key on a server only**, verifies every payment server-side with `GET https://api.flutterwave.com/v3/transactions/:id/verify` (check status `successful`, amount, currency, tx_ref), and sets a webhook (`charge.completed`, check the `verif-hash` header against your secret hash). Each gateway runs in demo mode while its key is empty.
+
 ## Going live with T.GANG's own Paystack account
 
 1. T.GANG signs up at paystack.com as the business, completes compliance (CAC docs, ID) and adds **their own settlement bank account**, so payouts go straight to T.GANG.

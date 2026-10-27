@@ -3,11 +3,16 @@
 // NEVER put a secret key (sk_...) in this file or anywhere in the website.
 window.TG_CONFIG={
   PAYSTACK_PUBLIC_KEY:'',
+  // Paste T.GANG's own Flutterwave PUBLIC key (FLWPUBK_TEST-... or FLWPUBK-...). Leave '' for DEMO mode.
+  FLUTTERWAVE_PUBLIC_KEY:'',
+  // Flutterwave docs list 'opay' as an NGN payment option (OPay e-wallet).
+  FLW_OPTIONS:'card, banktransfer, ussd, mobilemoneyghana, opay',
+  DEFAULT_GATEWAY:'flutterwave', // 'paystack' or 'flutterwave'
   CURRENCY:'NGN',
   // Paystack Inline channels. Note: Paystack docs list no OPay channel; mobile_money works for Ghana (GHS) accounts only.
   CHANNELS:['card','bank','bank_transfer','ussd','mobile_money'],
   WHATSAPP:'2349159999813',
-  // OPay is offered as a manual transfer. EXAMPLE details below: replace with T.GANG's real OPay account.
+  // With Paystack (no OPay channel in its docs), OPay falls back to a manual transfer. EXAMPLE details below: replace with T.GANG's real OPay account.
   OPAY:{number:'0000000000 (example)',name:'T.GANG Store (example)'},
   // Optional: your server endpoint that verifies a reference with the secret key, e.g. '/api/verify?reference='
   VERIFY_URL:''

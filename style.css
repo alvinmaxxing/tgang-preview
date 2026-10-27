@@ -96,3 +96,4 @@ img.mono{width:40px;height:40px;object-fit:cover;border-radius:50%;opacity:1!imp
 .tick{width:70px;height:70px;border-radius:50%;background:var(--ink);color:#fff;display:grid;place-items:center;font-size:30px;margin:10px auto 22px}
 .ref{font:500 26px var(--sans);letter-spacing:.12em;background:#fff;padding:16px;border-radius:8px;margin:10px 0}
 @media(max-width:760px){.ckg{grid-template-columns:1fr;gap:10px}.sum{order:-1}.ckin{height:100%;border-radius:0;padding:56px 20px 30px}.ck .x{position:absolute}.ckf-two,.v-form .two{grid-template-columns:1fr;gap:0}}
+.gw{display:flex;gap:8px;margin-bottom:18px}.gw button{flex:1;padding:11px;border:1px solid #0002;border-radius:99px;background:#fff;font:500 13px var(--sans);cursor:pointer}.gw button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
