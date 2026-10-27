@@ -33,3 +33,10 @@
 .rv0{flex-wrap:wrap;text-align:left}.rv0 span:not(.stars){white-space:nowrap}
 @media(max-width:600px){.rv0{font-size:10.5px;gap:5px}}
 .card .qs[hidden],.card .qa[hidden],.rvf[hidden],.rvopen[hidden]{display:none!important}.card .qa{text-align:center}
+/* welcome 10% */
+.tgwf{display:flex;gap:8px;margin:18px 0 6px}.tgwf input{flex:1;min-width:0;padding:12px 14px;border:1px solid #111;background:#fff;font:inherit;font-size:14px;border-radius:0}
+.tgwf .btn{white-space:nowrap}.tgwm{min-height:1em;font-size:12px;color:#a33;margin:4px 0}
+.tgwcode{margin:18px 0 6px;font-size:14px;letter-spacing:.08em}.tgwcode b{display:inline-block;border:1px solid #111;padding:6px 12px;letter-spacing:.2em;margin-left:6px}
+.tgws{font-size:11px;opacity:.65;margin:4px 0 14px}.tgw .btn-line{background:transparent;color:inherit;border:1px solid currentColor}
+.bx-pon span{flex:1;padding:11px 12px;align-self:center;font-size:13px}
+@media(max-width:420px){.tgwf{flex-direction:column}}

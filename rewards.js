@@ -9,8 +9,12 @@ window.TG_GIFT=[25000,50000,100000,200000];
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>'&#'+c.charCodeAt(0)+';');
 const tierOf=l=>[...R.TIERS].reverse().find(t=>l>=t.min);
 const nextOf=l=>R.TIERS.find(t=>t.min>l);
-let acct=null;const D=window.TGD={pts:0,gift:0,code:''};
-window.tgDisc=s=>Math.min(s,D.pts/R.REDEEM_PTS*R.REDEEM_NGN+D.gift);
+let acct=null;const D=window.TGD={pts:0,gift:0,code:'',promo:localStorage.tgpromo||''};
+/* Welcome code: 10% off merchandise (not gift cards, not shipping). Checked in the browser only; T.GANG confirms each order. */
+const PROMOS={TGWELCOME10:.1};
+window.tgPromoOff=()=>D.promo&&PROMOS[D.promo]?Math.round(bag.filter(b=>b[1]!='Gift card').reduce((a,b)=>a+b[3],0)*PROMOS[D.promo]):0;
+window.tgDisc=s=>Math.min(s,tgPromoOff()+D.pts/R.REDEEM_PTS*R.REDEEM_NGN+D.gift);
+window.tgDiscText=()=>{const p=tgPromoOff(),o=tgDisc(bag.reduce((a,b)=>a+b[3],0))-p;return (p?`\nWelcome code ${D.promo} (10% off): −${N(p)} (please confirm)`:'')+(o>0?`\nRewards & gift card: −${N(o)}`:'')};
 async function load(){acct=null;if(!window.ACCT||!ACCT.user())return null;const {data}=await ACCT.sb.from('loyalty_accounts').select('points,lifetime_points').maybeSingle();acct=data||null;return acct}
 function card(a){const l=a?a.lifetime_points:0,t=tierOf(l),nx=nextOf(l),pc=nx?Math.round((l-t.min)/(nx.min-t.min)*100):100;
  return `<div class="tgr-card"><div class="tgr-top"><span class="eyebrow">TG Rewards</span><span class="tgr-tier">${t.n}</span></div>
@@ -23,7 +27,10 @@ const items=$('bagitems');
 function paint(){const x=$('bagx2');if(!x)return;if(!bag.length){x.innerHTML='';return}
  const can=acct&&acct.points>=R.REDEEM_PTS,max=can?Math.floor(acct.points/R.REDEEM_PTS)*R.REDEEM_PTS:0;if(D.pts>max)D.pts=0;
  x.innerHTML=`<div class="bx"><b>TG Rewards</b>${!ACCT||!ACCT.user()?`<p><a href="#" id="bx-in">Log in</a> to use your points.</p>`:can?`<label class="bx-chk"><input type="checkbox" id="bx-pts" ${D.pts?'checked':''}> Use ${max} points for ${N(max/R.REDEEM_PTS*R.REDEEM_NGN)} off</label>`:`<p>${acct?acct.points:0} points. ${R.REDEEM_PTS} points = ${N(R.REDEEM_NGN)} off.</p>`}</div>
- <div class="bx"><b>Have a gift card?</b><form id="bx-gf" class="bx-row"><input id="bx-gc" placeholder="TG-XXXX-XXXX-XXXX" value="${esc(D.code)}" autocomplete="off" aria-label="Gift card code"><button>Apply</button></form><p id="bx-gm" class="bx-m">${D.gift?`${N(D.gift)} gift card credit applied`:esc(D.msg||'')}</p></div>`;
+ <div class="bx"><b>Have a gift card?</b><form id="bx-gf" class="bx-row"><input id="bx-gc" placeholder="TG-XXXX-XXXX-XXXX" value="${esc(D.code)}" autocomplete="off" aria-label="Gift card code"><button>Apply</button></form><p id="bx-gm" class="bx-m">${D.gift?`${N(D.gift)} gift card credit applied`:esc(D.msg||'')}</p></div>
+ <div class="bx"><b>Promo code</b>${D.promo?`<div class="bx-row bx-pon"><span>${esc(D.promo)} · 10% off · −${N(tgPromoOff())}</span><button type="button" id="bx-px">Remove</button></div>`:`<form id="bx-pf" class="bx-row"><input id="bx-pc" placeholder="TGWELCOME10" autocomplete="off" aria-label="Promo code"><button>Apply</button></form>`}<p class="bx-m">${esc(D.pmsg||'One use per customer, new orders only; the shop confirms your code. Not valid on gift cards or shipping.')}</p></div>`;
+ const pf=$('bx-pf');if(pf)pf.onsubmit=e=>{e.preventDefault();const c=$('bx-pc').value.trim().toUpperCase();if(PROMOS[c]){D.promo=localStorage.tgpromo=c;D.pmsg=''}else D.pmsg=c?'That code isn\'t valid.':'Enter your code first.';rb()};
+ const px=$('bx-px');if(px)px.onclick=()=>{D.promo='';D.pmsg='';localStorage.removeItem('tgpromo');rb()};
  const i=$('bx-in');if(i)i.onclick=e=>{e.preventDefault();ACCT.open('login')};
  const p=$('bx-pts');if(p)p.onchange=()=>{D.pts=p.checked?max:0;rb()};
  $('bx-gf').onsubmit=async e=>{e.preventDefault();const c=$('bx-gc').value.trim().toUpperCase(),m=$('bx-gm');D.code=c;D.gift=0;D.msg='';
