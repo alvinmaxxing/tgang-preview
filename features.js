@@ -18,7 +18,7 @@ window.toggleWish=i=>{const k=key(P[i]),on=wish.includes(k);wish=on?wish.filter(
 $('wishitems').onclick=e=>{const d=e.target.dataset;if(d.d)toggleWish(+d.d);if(d.o){$('wish').classList.remove('open');openProduct(+d.o);if(sold(P[d.o]))$('mnotify').click()}};
 $('wishbtn').onclick=()=>$('wish').classList.add('open');$('wishx').onclick=()=>$('wish').classList.remove('open');rw();
 window.SHOP_WISH_COUNT=()=>wish.length;window.SHOP_TOAST=toast;if(window.SHOP_AUTH)SHOP_AUTH.onWishOpen=()=>$('wish').classList.add('open');
-if(window.ACCT){let had=false;ACCT.onChange(async u=>{if(u){had=true;const local=ls('tgwish',[]);await ACCT.wishMerge(local);const db=await ACCT.wishLoad();if(db){wish=[...new Set([...db,...local])];rw()}}else if(had){wish=ls('tgwish',[]);rw()}})}
+if(window.ACCT){let had=false;ACCT.onChange(async u=>{if(u){had=true;const local=ls('tgwish',[]);await ACCT.wishMerge(local);const db=await ACCT.wishLoad();if(db){wish=[...new Set([...db,...local,...wish])];rw()}}else if(had){wish=ls('tgwish',[]);rw()}})}
 
 // ---------- Restock alerts (demo) ----------
 let curI;window.onProductOpen=i=>{curI=i;const s=sold(P[i]);$('madd').disabled=s;$('madd').textContent=s?'Sold out (example)':'Add to bag';
