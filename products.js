@@ -23,3 +23,11 @@ window.P=[
 ];
 // Example only: pieces shown as sold out so the "Notify me" flow can be demoed.
 window.SOLD_OUT=["Contour Bodysuit"];
+// THE SALE (example). Percent off per piece, keyed "name|colour". Pieces not listed stay full price.
+// The current price above stays as the ORIGINAL; the sale price is computed and used everywhere (bag, sets, checkout).
+window.SALE_PCT={"Jet-Set Jumpsuit|black":20,"Reformer Set|pink":25,"Periwinkle Zip Set|blue":30,"Ribbed Romper|white":20,"Dusty Pink Set|pink":15,"Off-Duty Hoodie Set|cream":25,
+"Snatched Crop Top|white":20,"Sculpt Crop Top|pink":15,"Sleek Crop Top|black":20,"Turquoise Flare Leggings|blue":30,"Sculpt Leggings|black":20,"Sculpt Leggings|pink":20,"Sculpt Leggings|red":15,"Hot Pink Zip Jacket|pink":25,"Periwinkle Zip Jacket|blue":20};
+window.WAS={};P.forEach(p=>{const k=p[0]+'|'+p[2],o=SALE_PCT[k];if(o&&!(window.SOLD_OUT||[]).includes(p[0])){WAS[k]=p[3];p[3]=Math.round(p[3]*(1-o/100)/500)*500}});
+window.wasOf=p=>WAS[p[0]+'|'+p[2]];
+window.offOf=p=>{const w=wasOf(p);return w?Math.round((1-p[3]/w)*100):0};
+window.priceHTML=p=>{const w=wasOf(p),n=x=>'₦'+Math.round(x).toLocaleString();return w?`<s class="was">${n(w)}</s> <span class="now">${n(p[3])}</span>`:n(p[3])};

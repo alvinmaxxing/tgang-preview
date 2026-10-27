@@ -251,3 +251,10 @@ footer{border-top:1px solid var(--line);padding:56px 5vw;font-size:13px}footer .
 @media(prefers-reduced-motion:reduce){.reel img,.hot,.hs{animation:none;transition:none}}
 .builder>*,.bld,.bld fieldset{min-width:0}html,body{overflow-x:hidden}
 .bag{visibility:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1),visibility 0s .5s}.bag.open{visibility:visible;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
+/* The Sale (example) */
+.salebar{background:var(--ink);color:var(--ivory);text-align:center;font-size:10.5px;letter-spacing:.22em;text-transform:uppercase;padding:9px 5vw;border-bottom:1px solid var(--gold-d)}
+.salebar a{text-decoration:none}.salebar b{font-weight:600;color:var(--nude)}.salebar span{opacity:.6}
+.tag.sale{background:var(--ink);color:var(--ivory);border:1px solid var(--gold)}
+s.was{color:#15131180;text-decoration-thickness:1px;margin-right:2px}.now{color:var(--gold-d);font-weight:600}
+.mtag{display:inline-block;vertical-align:middle;margin-left:8px;font-family:var(--sans);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;padding:5px 9px;border:1px solid var(--gold);color:var(--gold-d);font-weight:600}
+@media(max-width:600px){.salebar{font-size:9px;letter-spacing:.14em}}
