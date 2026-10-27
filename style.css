@@ -344,3 +344,11 @@ body.mopen{overflow:hidden}
 .bagic .hn{font-weight:700}
 @media(max-width:640px){.bagic{border:1px solid var(--ink)!important;width:40px;height:40px;min-width:40px;padding:0!important;margin-left:4px}.bagic svg{width:22px;height:22px}.bagic .hn{top:-7px;right:-7px;min-width:18px;height:18px;line-height:18px;font-size:9.5px;box-shadow:0 0 0 2px var(--paper)}.bagic .hn:empty,.bagic .hn[data-z="1"]{display:none}.wbtn svg{width:21px;height:21px}}
 .gs-wrap{border-top-color:var(--line)}.gs-h{font-family:var(--serif)}
+
+/* policies v13 */
+.pg.policy{max-width:820px}.policy .pdate{display:inline-block;font-size:11px;letter-spacing:.22em;text-transform:uppercase;border:1px solid var(--gold-d,#a8864a);padding:6px 12px;margin:6px 0 26px}
+.policy h2{font-family:"Cormorant Garamond",Georgia,serif;font-weight:400;font-size:28px;margin:40px 0 10px;padding-top:22px;border-top:1px solid var(--line,#15131122)}
+.policy p,.policy li{font-size:15px;line-height:1.75}.policy ul,.policy ol{padding-left:20px}.policy li{margin:6px 0}
+.policy a{text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--gold-d,#a8864a)}.policy .pswitch{margin-top:46px;font-size:13px;opacity:.85}
+.pol-agree{font-size:12px;line-height:1.5;opacity:.75;margin-top:10px;text-align:center}.pol-agree a{text-decoration:underline}
+@media(max-width:600px){.policy h2{font-size:23px}.policy p,.policy li{font-size:14.5px}}

@@ -9,7 +9,7 @@ g.onclick=e=>{const h=e.target.closest('.heart');if(h){toggleWish(+h.dataset.w);
 window.openProduct=i=>{cur=P[i];size=null;window.onProductOpen&&onProductOpen(i);
 document.getElementById('mart').className='m-art '+cur[2];document.getElementById('mart').innerHTML=art(cur[1],cur[4],1)+(cur[5]?`<div class="mthumbs">${[cur[4],cur[5]].map((s,k)=>`<button type="button" class="${k?'':'on'}" data-src="${s}" aria-label="Photo ${k+1}"><img src="${TI(s)}" alt="" decoding="async"></button>`).join('')}</div>`:'');let md=document.getElementById('mdesc');if(!md){md=document.createElement('p');md.id='mdesc';md.className='mdesc';mprice.after(md)}md.textContent=cur[6]||'';md.hidden=!cur[6];
 mcat.textContent=cur[1];mname.textContent=cur[0];mprice.innerHTML=priceHTML(cur)+(wasOf(cur)?` <span class="mtag">Sale</span>`:isNew(cur)?` <span class="mtag">New</span>`:'');
-msizes.innerHTML=["XS","S","M","L","XL"].map(s=>`<button>${s}</button>`).join('');upd();m.classList.add('open');m.setAttribute('aria-hidden','false')};
+msizes.innerHTML=(cur[1]=="Bags"?["One size"]:["XS","S","M","L","XL"]).map(s=>`<button>${s}</button>`).join('');upd();m.classList.add('open');m.setAttribute('aria-hidden','false')};
 msizes.onclick=e=>{if(e.target.tagName!="BUTTON")return;size=e.target.textContent;msizes.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b==e.target));upd()};
 function upd(){mbuy.href='https://wa.me/2349159999813?text='+encodeURIComponent(`Hi T.GANG! I'd like to order the ${cur[0]} (${cur[2]})${size?', size '+size:''}.`)}
 const shut=()=>{m.classList.remove('open');m.setAttribute('aria-hidden','true')};document.getElementById('close').onclick=shut;m.onclick=e=>{if(e.target==m)shut()};addEventListener('keydown',e=>e.key=="Escape"&&shut());
