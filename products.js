@@ -19,8 +19,20 @@ window.P=[
 ["Sculpt Leggings","Leggings","red",15000,"tg-12.jpg"],
 ["Hot Pink Zip Jacket","Layers","pink",18000,"tg-07.jpg"],
 ["Periwinkle Zip Jacket","Layers","blue",18000,"tg-10.jpg"],
-["Cropped Teddy Hoodie","Layers","cream",20000,"tg-12.jpg"]
+["Cropped Teddy Hoodie","Layers","cream",20000,"tg-12.jpg"],
+// NEW IN (from @t.gangwears). EXAMPLE prices to confirm. Extra fields: [5] second photo (or null), [6] short description.
+["Hot Pink Zip Romper","Rompers","pink",24000,"tg-hot-pink-zip-romper-1.jpg","tg-hot-pink-zip-romper-2.jpg","A sleek zip-front romper in hot pink. Sleeveless, sculpting and made to move."],
+["White Open-Back Romper","Rompers","white",24000,"tg-white-open-back-romper-1.jpg","tg-white-open-back-romper-2.jpg","Fitted and sleeveless in clean white, with a daring open back."],
+["Sunny Side Set","Sets","cream",34000,"tg-sunny-side-set-1.jpg","tg-sunny-side-set-2.jpg","A soft pale-yellow cropped zip jacket and leggings, finished with a white bralette."],
+["Kim Set","Sets","red",30000,"tg-kim-set-1.jpg","tg-kim-set-2.jpg","A long-sleeve V-neck top and matching capri leggings in bold red."],
+["Milly Play Suit","Rompers","cream",25000,"tg-milly-play-suit-1.jpg","tg-milly-play-suit-2.jpg","A short-sleeve zip-front playsuit in warm beige. Easy, polished, everyday."],
+["BB Set","Sets","black",28000,"tg-bb-set-1.jpg",null,"A sleeveless black crop top with a pleated mini skirt. Back in store."],
+["5 in 1 Vency Set","Sets","black",38000,"tg-vency-set-1.jpg",null,"A black crop top and capri leggings with red side stripes, part of a five-piece set."],
+["Zip Jacket Set","Sets","black",34000,"tg-zip-jacket-set-1.jpg",null,"A cropped zip jacket, crop top and wide-leg pants in black."]
 ];
+// Pieces tagged "New" on cards and in the product popup.
+window.NEW=["Hot Pink Zip Romper","White Open-Back Romper","Sunny Side Set","Kim Set","Milly Play Suit","BB Set","5 in 1 Vency Set","Zip Jacket Set"];
+window.isNew=p=>(window.NEW||[]).includes(p[0]);
 // Example only: pieces shown as sold out so the "Notify me" flow can be demoed.
 window.SOLD_OUT=["Contour Bodysuit"];
 // THE SALE (example). Percent off per piece, keyed "name|colour". Pieces not listed stay full price.
