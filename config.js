@@ -17,3 +17,8 @@ window.TG_CONFIG={
   // Optional: your server endpoint that verifies a reference with the secret key, e.g. '/api/verify?reference='
   VERIFY_URL:''
 };
+
+// NEW DROP COUNTDOWN: edit the date (ISO with timezone) and name here. EXAMPLE date.
+window.TG_DROP={name:'The Dream Collection',date:'2026-11-28T19:00:00+01:00'};
+// Example bundle discount for "Build your set" (0.10 = 10% off when you take 2+ pieces).
+window.TG_BUNDLE=0.10;

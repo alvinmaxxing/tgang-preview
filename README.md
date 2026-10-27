@@ -25,3 +25,16 @@ Going live: T.GANG opens a Flutterwave business account with their settlement ba
 4. Verification: the browser callback is not proof of payment. On the server, call `GET https://api.paystack.co/transaction/verify/:reference` with the secret key and check status `success`, amount and currency; set `VERIFY_URL` in `config.js` to that endpoint.
 5. Webhook: in Dashboard → Settings → API Keys & Webhooks set a webhook URL on the server; verify the `x-paystack-signature` header (HMAC SHA512 of the body with the secret key) and mark orders paid on `charge.success`. Bank transfer and USSD payments complete offline, so they need the webhook.
 6. Enable the wanted channels in the Paystack dashboard and replace the example OPay details in `config.js`.
+
+## v2 features (Barbie / dream wardrobe)
+
+All config lives in `config.js` (`TG_DROP` drop name/date, `TG_BUNDLE` set discount) and `products.js` (products, `SOLD_OUT`). Feature code: `features.js`.
+
+- **Shop the look**: lookbook photos with tappable hotspots (open the piece) and "Shop this look" (adds the whole set to the bag in one size). Edit `LOOKS` in `features.js` (product index, hotspot x%/y%).
+- **Build your set**: pick top / bottom / layer; 2+ pieces get the example bundle discount (`TG_BUNDLE`).
+- **TG Babe of the week**: sample spotlight using a T.GANG photo, links to Instagram.
+- **Style quiz**: 4 questions → "Your TG Babe match" with 3 pieces to add, plus share/copy text.
+- **Reels strip**: photo tiles with Ken Burns motion, link to Instagram (no embeds).
+- **Wishlist**: hearts on products, saved in `localStorage` (`tgwish`), wishlist drawer.
+- **Notify me / restock alerts** and **drop waitlist**: DEMO ONLY. Sign-ups are saved in the visitor's own browser (`localStorage` keys `tgnotify`, `tgwaitlist`) and never reach T.GANG. Going live needs a backend (e.g. a serverless function + database/Google Sheet, or a WhatsApp/email API) to store sign-ups and send the alerts.
+- **Reviews wall**: SAMPLE reviews and a customer-photo slot; replace with real reviews.
