@@ -1,5 +1,5 @@
 // T.GANG v2 features: wishlist, restock alerts, shop the look, set builder, drop countdown, style quiz.
-(()=>{const $=id=>document.getElementById(id),N=n=>'₦'+Math.round(n).toLocaleString(),SZ=["XS","S","M","L","XL"];
+(()=>{const $=id=>document.getElementById(id),N=n=>TGM.fmt(n),SZ=["XS","S","M","L","XL"];
 const ls=(k,d)=>{try{return JSON.parse(localStorage[k]||'')}catch(e){return d}};
 const key=p=>p[0]+'|'+p[2],cap=s=>s[0].toUpperCase()+s.slice(1);
 const toast=t=>{const el=$('toast');el.textContent=t;el.classList.add('on');clearTimeout(toast.t);toast.t=setTimeout(()=>el.classList.remove('on'),2600)};

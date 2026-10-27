@@ -258,3 +258,11 @@ footer{border-top:1px solid var(--line);padding:56px 5vw;font-size:13px}footer .
 s.was{color:#15131180;text-decoration-thickness:1px;margin-right:2px}.now{color:var(--gold-d);font-weight:600}
 .mtag{display:inline-block;vertical-align:middle;margin-left:8px;font-family:var(--sans);font-size:9.5px;letter-spacing:.22em;text-transform:uppercase;padding:5px 9px;border:1px solid var(--gold);color:var(--gold-d);font-weight:600}
 @media(max-width:600px){.salebar{font-size:9px;letter-spacing:.14em}}
+/* v5: currency switcher + shipping */
+.ccy{font:12px var(--sans);letter-spacing:.04em;border:1px solid var(--line);background:transparent;color:var(--ink);padding:7px 6px;border-radius:0;max-width:150px;cursor:pointer}
+.fxnote{font-size:12px;opacity:.6;margin:-6px 0 18px;letter-spacing:.02em}
+.ship{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:6px}.ship .note{grid-column:1/-1;margin:2px 0}
+.ship button{text-align:left;padding:14px;border:1px solid var(--line);background:#fff;cursor:pointer;font:14px var(--sans);border-radius:0;color:var(--ink)}
+.ship button small{display:block;opacity:.6;font-size:12px;margin-top:3px}.ship button.on{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink);background:var(--bone)}
+.cs em{font-style:normal;opacity:.55;font-size:.85em}
+@media(max-width:640px){.ccy{max-width:92px;font-size:11px;padding:6px 3px}.ship{grid-template-columns:1fr}}

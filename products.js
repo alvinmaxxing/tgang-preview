@@ -30,4 +30,7 @@ window.SALE_PCT={"Jet-Set Jumpsuit|black":20,"Reformer Set|pink":25,"Periwinkle 
 window.WAS={};P.forEach(p=>{const k=p[0]+'|'+p[2],o=SALE_PCT[k];if(o&&!(window.SOLD_OUT||[]).includes(p[0])){WAS[k]=p[3];p[3]=Math.round(p[3]*(1-o/100)/500)*500}});
 window.wasOf=p=>WAS[p[0]+'|'+p[2]];
 window.offOf=p=>{const w=wasOf(p);return w?Math.round((1-p[3]/w)*100):0};
-window.priceHTML=p=>{const w=wasOf(p),n=x=>'₦'+Math.round(x).toLocaleString();return w?`<s class="was">${n(w)}</s> <span class="now">${n(p[3])}</span>`:n(p[3])};
+window.priceHTML=p=>{const w=wasOf(p),n=x=>TGM.fmt(x);return w?`<s class="was">${n(w)}</s> <span class="now">${n(p[3])}</span>`:n(p[3])};
+// PARCEL WEIGHTS (EXAMPLES, kg per piece incl. packaging) by category. Used for DHL / FedEx shipping quotes.
+window.WEIGHT_KG={Jumpsuits:0.6,Bodysuits:0.35,Sets:0.7,Rompers:0.45,Tops:0.25,Leggings:0.35,Layers:0.6};
+window.weightOf=p=>WEIGHT_KG[p[1]]||0.5;
