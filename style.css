@@ -137,16 +137,6 @@ h1 em,h2 em{font-style:italic;color:var(--gold-d);font-weight:300}
 .lilac,.pink,.blue,.cream,.white,.red{background:var(--bone)}.black{background:#1d1b19;color:#fff}
 /* marquee */
 .marquee{background:var(--ink);color:var(--bone);font-size:10.5px;letter-spacing:.38em;padding:15px 0}
-/* reels */
-.reels{padding:56px 0 0}.rhead{display:flex;justify-content:space-between;align-items:center;padding:0 5vw 18px}.rhead .eyebrow{margin:0}
-.rstrip{display:grid;grid-auto-flow:column;overflow-x:auto;padding:0 5vw 10px;scroll-snap-type:x mandatory;scrollbar-width:none;gap:12px;grid-auto-columns:clamp(160px,18vw,250px)}
-.reel{position:relative;aspect-ratio:9/16;overflow:hidden;scroll-snap-align:start;border-radius:0;background:var(--bone);box-shadow:none}
-.reel img{width:100%;height:100%;object-fit:cover;animation:kb 16s ease-in-out infinite alternate}
-@keyframes kb{from{transform:scale(1)}to{transform:scale(1.1) translate(-2%,-2%)}}
-.reel:after{background:linear-gradient(transparent 55%,#000a)}
-.play{position:absolute;left:50%;top:50%;border-radius:50%;z-index:2;width:42px;height:42px;margin:-21px;background:none;border:1px solid #fffc;backdrop-filter:none;transition:.4s}.play:after{content:'';position:absolute;border-left:11px solid #fff;border-top:7px solid transparent;border-bottom:7px solid transparent;left:16px;top:13px;border-left-width:11px;border-top-width:7px;border-bottom-width:7px}
-.reel:hover .play{background:#fff3}
-.rt{position:absolute;left:14px;bottom:14px;right:14px;z-index:2;color:#fff;font:italic 300 19px var(--serif)}
 /* filters + cards */
 .filters{gap:22px;border-bottom:1px solid var(--line);padding-bottom:0}
 .filters button{border:0;border-radius:0;padding:10px 0 12px;font:600 11px var(--sans);letter-spacing:.2em;text-transform:uppercase;opacity:.5;border-bottom:1px solid transparent;margin-bottom:-1px}
@@ -248,7 +238,7 @@ footer{border-top:1px solid var(--line);padding:56px 5vw;font-size:13px}footer .
 .navr .btn.sm{padding:10px 12px}.looks{grid-template-columns:1fr 1fr;gap:12px}.builder,.bw{grid-template-columns:1fr;gap:30px}.qa{grid-template-columns:1fr}.qrec{grid-template-columns:repeat(3,1fr);gap:8px}.qr .btn.sm{padding:9px 8px;font-size:9.5px;letter-spacing:.1em}
 .lookc figcaption{flex-direction:column;align-items:flex-start}.lookc .btn{width:100%;text-align:center}.drop{margin:90px 0 0}.drop:before{inset:12px}.bwimg{max-width:420px;width:calc(100% - 16px);margin:auto}
 .grid{gap:34px 12px}.filters{gap:18px;overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none}.filters button{flex:0 0 auto}.nav nav{display:none}.wbtn{padding:9px 10px}.btn{padding:16px 26px}}
-@media(prefers-reduced-motion:reduce){.reel img,.hot,.hs{animation:none;transition:none}}
+@media(prefers-reduced-motion:reduce){.hot,.hs{animation:none;transition:none}}
 .builder>*,.bld,.bld fieldset{min-width:0}html,body{overflow-x:hidden}
 .bag{visibility:hidden;transition:transform .5s cubic-bezier(.2,.7,.2,1),visibility 0s .5s}.bag.open{visibility:visible;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 /* The Sale (example) */
